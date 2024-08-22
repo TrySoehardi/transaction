@@ -5,7 +5,7 @@ export interface service {
     service_code?: string,
     service_name?: string,
     service_icon?: string,
-    service_tariff?: number,
+    service_tariff: number,
     created_at?: Date,
     update_at?: Date
 }

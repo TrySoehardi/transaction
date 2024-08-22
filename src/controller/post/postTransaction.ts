@@ -24,13 +24,17 @@ export class PostTransaction extends Base {
             this.response(Res,400,102,"Service ataus Layanan tidak ditemukan",null);
         }
 
-        const result = await this.transactionService.order(Req.body.service_code, Req.userId, "ewallet");
-        // console.log(result);
-        console.log("FROM RESULT ",result);
-        if(result.code == 102) {
-            this.response(Res,400,result.code,result.message,null);
-        } else {
-            this.response(Res,200,0,"Transaksi berhasil",result);
+        try {
+            const result = await this.transactionService.order(Req.body.service_code, Req.userId, "ewallet");
+            // console.log(result);
+            console.log("FROM RESULT ",result);
+            if(result.code == 102) {
+                this.response(Res,400,result.code,result.message,null);
+            } else {
+                this.response(Res,200,0,"Transaksi berhasil",result);
+            }
+        } catch(err) {
+            console.log(err);
         }
         
     }

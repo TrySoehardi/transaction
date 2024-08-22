@@ -18,7 +18,7 @@ export interface dataOrder {
     service_name: string | undefined,
     transaction_type: string | undefined,
     total_amount: number | undefined,
-    created_on: string
+    created_on?: Date
 }
 
 
@@ -28,7 +28,7 @@ export class TransactionModel {
         this.db = db;
     }
 
-    public async create(transaction:transaction) {
+    public async create(transaction:transaction):Promise<transaction> {
         transaction.id = uuidv4();
         transaction.created_at = new Date();
         const data = [

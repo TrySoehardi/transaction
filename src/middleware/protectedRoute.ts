@@ -10,16 +10,17 @@ declare module "express-serve-static-core" {
 
 
 export async function protectedRoute(Req: Request, Res: Response, Next: NextFunction) {
-    const baseUrl = process.env.BASE_URL || "http://localhost";
+    const membershipMs = process.env.MEMBERSHIP_MS || "http://localhost";
     const token = Req.header('Authorization');
+    console.log(Req.headers);
     if (!token) {
         return Res.status(401).json({ error: 'Access denied' });
     }
 
     try {
-        const verif = await Axios.get(`${baseUrl}:3000/api/auth`, { headers: { Authorization: token } });
+        const verif = await Axios.get(`${membershipMs}/api/auth`, { headers: { Authorization: token } });
         Req.userId = verif.data.data;
-    } catch {
+    } catch(err) {
         return Res.status(401).json({
             "status": 108,
             "message": "Token tidak valid atau kadaluwarsa",

@@ -7,7 +7,7 @@ export interface account {
     user_id: string,
     account_name?: string,
     account_type?: number,
-    balance?: number,
+    balance: number,
     opening_date?: Date,
     created_at?: Date,
     updated_at?: Date | null

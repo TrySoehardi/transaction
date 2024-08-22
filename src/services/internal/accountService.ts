@@ -41,7 +41,7 @@ export class AccountService extends BaseService {
         return result;
     }
 
-    public async payment(user_id: string, amount: number | undefined) {
+    public async payment(user_id: string, amount: number) {
         const account: account = {
             user_id: user_id,
             balance: amount
